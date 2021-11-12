@@ -14,16 +14,23 @@ const userNames = [
     { name: 'Jill' }
 ]
 app.post('/users', function (req, res) {
-    res.json({
-        success: true,
-        users: userNames
-    })
+    if (userNames.includes(req.body.username)) {
+        //Password Check
+        res.json({
+            success: true,
+            users: userNames
+        })
+    }else {
+        res.json({
+            success: false,
+            message: "Error 401 Unauthorised"
+        })
+    }
 })
 app.get('/users/:id', function (req, res) {
-    console.log(req.params.id)
     res.json({
         success: true,
-        message: 'got one user',
+        message: "got one user (doesn't have to be registered yet)",
         user: req.params.id
     })
 })
