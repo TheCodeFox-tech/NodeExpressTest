@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require('body-parser');
 
-const app = express();
+const app = express()
 
 app.use(bodyParser.json());
 
@@ -9,15 +9,14 @@ app.listen(8000, function () {
     console.log("Server is running!");
 })
 
-const mockUserData = [
+const userNames = [
     { name: 'Mark' },
     { name: 'Jill' }
 ]
-app.get('/users', function (req, res) {
+app.post('/users', function (req, res) {
     res.json({
         success: true,
-        message: 'successfully got users. Nice!',
-        users: mockUserData
+        users: userNames
     })
 })
 app.get('/users/:id', function (req, res) {
